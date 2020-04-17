@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Home Page</h1>
+
+@*Simple access quick checks*@
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>User is authenticated</h1>
+}
+else
+{
+    <h1>User is not authenticated</h1>
+}
+
+@*Reusable functions*@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService authorizationService
+if((await _authorizationservice.AuthorizeAsync(User, "claim.dob")).Succeeded)
+{
+<h1>User has Dob Claim</h1>
+}
